@@ -3,11 +3,11 @@
   "description": "a very small drag library for javascript",
   "keywords": ["ender", "drag", "drop", "microjs"],
   "version": "0.0.1",
-  "homepage": "https://jakeluer.github.com/drag.js",
+  "homepage": "https://logicalparadox.github.com/drag.js",
   "authors": ["Jake Luer <@jakeluer>"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/jakeluer/drag.js"
+    "url": "https://github.com/logicalparadox/drag.js"
   },
   "dependencies": {
     "bean": ">= 0.2.7",
