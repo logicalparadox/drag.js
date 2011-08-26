@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Drag.js - Small Drag & Drop library for JavaScript</title>
+    <script src="../support/bean.js"></script>
+    <script src="../src/drag.js"></script>
+    
+    <style>
+      body {
+        padding: 50px;
+        font: 14px/1.5 "helvetica neue", helvetica, arial, sans-serif;
+        color: #8b8b8b;
+      }
+      h1, h2, h3 {
+        font-size: 33px;
+        font-weight: normal;
+        color: #333;
+        -webkit-font-smoothing: antialiased;
+      }
+      h2 {
+        display: none;
+        font-size: 33px;
+      }
+      h3 {
+        padding: 5px 0;
+        font-size: 18px;
+        border-bottom: 3px solid #eee;
+      }
+      #container {
+        border: 1px solid red;
+        width: 400px;
+        height: 400px;
+        position: relative;
+      }
+      .box {
+        margin: 5px;
+        border: 1px solid #888;
+        font-size: 11px;
+        text-align: center;
+        line-height: 50px;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 40px;
+        left: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div class="box"></div>
+    </div>
+    <script>
+      
+
+    
+      var mydrag = drag('#container .box')
+        .axis('both')
+        .container('#container')
+        .bind();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "drag",
+  "description": "a very small drag library for javascript",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jakeluer/drag.js",
+  "authors": ["Jake Luer"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jakeluer/drag.js.git"
+  },
+  "dependencies": {
+    "bean": ">= 0.2.7",
+    "qwery": ">= 2.1.2",
+    "bonzo": ">= 0.6.4"
+  },
+  "main": "./src/drag.js",
+  "ender": "./src/ender.js"
+}
