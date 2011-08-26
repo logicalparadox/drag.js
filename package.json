@@ -20,6 +20,6 @@
   "main": "./drag.js",
   "ender": "./src/ender.js",
   "scripts": {
-    "builder": "node make/build.js",
+    "builder": "node make/build.js"
   }
 }
