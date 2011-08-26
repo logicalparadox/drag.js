@@ -1,0 +1,3 @@
+[submodule "support/bean"]
+	path = support/bean
+	url = https://github.com/fat/bean.git

@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Drag.js - Small Drag & Drop library for JavaScript</title>
-    <script src="../support/bean.js"></script>
+    <script src="../support/bean/bean.js"></script>
     <script src="../src/drag.js"></script>
     
     <style>
@@ -26,15 +26,14 @@
         font-size: 18px;
         border-bottom: 3px solid #eee;
       }
-      #container {
-        border: 1px solid red;
-        width: 400px;
-        height: 400px;
+      .container {
         position: relative;
+        border: 1px red solid;
+        height: 140px;
       }
       .box {
-        margin: 5px;
         border: 1px solid #888;
+        background: #fff;
         font-size: 11px;
         text-align: center;
         line-height: 50px;
@@ -44,20 +43,142 @@
         top: 40px;
         left: 40px;
       }
+      .source {
+        font-family: monaco, monospace;
+        font-size: 12px;
+        color: #999;
+      }
+      
+      
     </style>
   </head>
   <body>
-    <div id="container">
-      <div class="box"></div>
+    <h1>Drag.js</h2>
+    <p>Drag.js is a small javascript utility that facilitates drag and drop behavior. It currently has one dependancy of <a href="https://github.com/fat/bean" target="_blank">Bean</a>.</p>
+    <h4>Examples</h4>
+    <ul>
+      <li><a href="#example1">Free Range</a></li>
+      <li><a href="#example2">Bind to Axis</a></li>
+      <li><a href="#example3">Limit Movement to Container</a></li>
+      <li><a href="#example4">Event Callbacks</a></li>
+    </ul>
+    <div class="examples">
+      <div id="example1">
+        <h3>Free Range</h3>
+        
+        <div id="container1" class="container">
+          <div id="box1" class="box"></div>
+          <div id="box2" class="box" style="left: 100px;"></div>
+          <div id="box3" class="box" style="left: 160px;"></div>
+        </div>
+        <script>
+          drag('#container1 #box1')
+            .bind();
+          drag('#container1 #box2')
+            .bind();
+          drag('#container1 #box3')
+            .bind();
+        </script>
+        <pre class="source">
+          <code>
+            drag('#container1 #box1')
+              .bind();
+            drag('#container1 #box2')
+              .bind();
+            drag('#container1 #box3')
+              .bind();
+          </code>
+        </pre>
+      </div>
+      <div id="example2">
+        <h3>Bind to Axis</h3>
+        <div id="container2" class="container">
+          <div id="box1" class="box"></div>
+          <div id="box2" class="box" style="left: 100px;"></div>
+        </div>
+        <script>
+          drag('#container2 #box1')
+            .axis('x')
+            .bind();
+          drag('#container2 #box2')
+            .axis('y')
+            .bind();
+        </script>
+        <pre class="source">
+          <code>
+            drag('#container2 #box1')
+              .axis('x')
+              .bind();
+            drag('#container2 #box2')
+              .axis('y')
+              .bind();
+          </code>
+        </pre>
+      </div>
+      <div id="example3">
+        <h3>Limit Movement to Container</h3>
+        <div id="container3" class="container">
+          <div id="box1" class="box"></div>
+          <div id="box2" class="box" style="left: 100px;"></div>
+        </div>
+        <script>
+          drag('#container3 #box1')
+            .container('#container3')
+            .bind();
+          drag('#container3 #box2')
+            .container('#container3')
+            .axis('y')
+            .bind();
+        </script>
+        <pre class="source">
+          <code>
+            drag('#container3 #box1')
+              .container('#container3')
+              .bind();
+            drag('#container3 #box2')
+              .container('#container3')
+              .axis('y')
+              .bind();
+          </code>
+        </pre>
+      </div>
+      <div id="example4">
+        <h3 id="ex4title">Event Callbacks</h3>
+        <div id="container4" class="container">
+          <div id="example4status"></div>
+          <div id="box1" class="box"></div>
+        </div>
+        <script>
+          drag('#container4 #box1')
+            .container('#container4')
+            .start(function() {
+              document.getElementById('ex4title').innerHTML = 'Event Callbacks for start and...';
+            })
+            .dragging(function() {
+              document.getElementById('example4status').innerHTML = 'dragging... ' + this.pos.x + 'px , ' + this.pos.y + 'px';
+            })
+            .end(function() {
+              document.getElementById('ex4title').innerHTML = 'Event Callbacks for start and... end.';
+            })
+            .bind();
+        </script>
+        <pre class="source">
+          <code>
+            drag('#container4 #box1')
+              .container('#container4')
+              .start(function() {
+                document.getElementById('ex4title').innerHTML = 'Event Callbacks for start and...';
+              })
+              .dragging(function() {
+                document.getElementById('example4status').innerHTML = this.pos.x + 'px , ' + this.pos.y + 'px';
+              })
+              .end(function() {
+                document.getElementById('ex4title').innerHTML = 'Event Callbacks for start and... end.';
+              })
+              .bind();
+          </code>
+        </pre>
+      </div>
     </div>
-    <script>
-      
-
-    
-      var mydrag = drag('#container .box')
-        .axis('both')
-        .container('#container')
-        .bind();
-    </script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 !
-function (context) {
+function (context, doc) {
   if ('undefined' == typeof bean) bean = require('bean');
   var b = bean.noConflict();
   var current = getComputedStyle || currentStyle;
@@ -121,21 +121,36 @@ function (context) {
           e2.preventDefault();
           e2.stopPropagation();
           };
+          
       var cleanup = function () {
-          b.remove(document, drag.evs.move, moveHandler);
-          b.remove(document, drag.evs.end, endHandler);
-          };
+        b.remove(doc, drag.evs.move, moveHandler);
+        b.remove(doc, drag.evs.end, endHandler);
+        b.remove(doc, 'selectstart', prevDef);
+        b.remove(self.el, 'dragstart', prevDef);
+      };
+      
       var endHandler = function (e2) {
-          for (var func in self._end) {
-            self._end[func].apply(self);
-          }
-          cleanup();
-          };
+        for (var func in self._end) {
+          self._end[func].apply(self);
+        }
+        cleanup();
+      };
+      
+      var prevDef = function (e3) {
+        e3.preventDefault();
+        e3.stopPropagation();
+      };
+      
       for (var func in self._start) {
         self._start[func].apply(self);
       }
-      b.add(document, drag.evs.move, moveHandler);
-      b.add(document, drag.evs.end, endHandler);
+      
+      doc.body.focus();
+      b.add(doc, 'selectstart', prevDef);
+      b.add(self.el, 'dragstart', prevDef);
+      
+      b.add(doc, drag.evs.move, moveHandler);
+      b.add(doc, drag.evs.end, endHandler);
     };
     this.getPos();
     b.add(this.el, drag.evs.start, this._eventHandler);
@@ -150,4 +165,4 @@ function (context) {
     return this;
   }(typeof module !== 'undefined' && module.exports && (module.exports = drag));
   context['drag'] = drag;
-}(this);
+}(this, document);
