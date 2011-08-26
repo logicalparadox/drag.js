@@ -1,3 +1,8 @@
+/*!
+  * drag.js - copyright Jake Luer 2011
+  * https://github.com/jakeluer/drag.js
+  * MIT License
+  */
 !
 function (context) {
   if ('undefined' == typeof bean) bean = require('bean');

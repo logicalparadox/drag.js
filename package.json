@@ -1,18 +1,25 @@
 {
   "name": "drag",
   "description": "a very small drag library for javascript",
+  "keywords": ["ender", "drag", "drop", "microjs"],
   "version": "0.0.1",
-  "homepage": "https://github.com/jakeluer/drag.js",
-  "authors": ["Jake Luer"],
+  "homepage": "https://jakeluer.github.com/drag.js",
+  "authors": ["Jake Luer <@jakeluer>"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/jakeluer/drag.js.git"
+    "url": "https://github.com/jakeluer/drag.js"
   },
   "dependencies": {
     "bean": ">= 0.2.7",
     "qwery": ">= 2.1.2",
     "bonzo": ">= 0.6.4"
   },
-  "main": "./src/drag.js",
-  "ender": "./src/ender.js"
+  "devDependencies": {
+    "smoosh": "0.3.x"
+  },
+  "main": "./drag.js",
+  "ender": "./src/ender.js",
+  "scripts": {
+    "builder": "node make/build.js",
+  }
 }
