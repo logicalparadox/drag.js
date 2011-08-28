@@ -438,8 +438,8 @@
     var self = this;
     this.unbind();
     this._eventHandler = function (e) {
-      var posX = parseFloat(self.current('left')),
-          posY = parseFloat(self.current('top'));
+      var posX = self.current('left'),
+          posY = self.current('top');
       var moveHandler = function (e2) {
           var offsetX, offsetY, newX, newY;
           if (!is_touch_device) {
@@ -453,6 +453,8 @@
           }
           newX = posX + offsetX;
           newY = posY + offsetY;
+          self.pos.dX = newX - self.current('left');
+          self.pos.dY = newY - self.current('top');
           if (self._container) {
             var c = self._container;
             if (newX < 0) newX = 0;
