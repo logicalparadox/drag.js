@@ -1,5 +1,4 @@
-!
-function (context, doc) {
+!function (context, doc) {
   if ('undefined' == typeof bean) bean = require('bean');
   var b = bean.noConflict();
   var current = getComputedStyle || currentStyle;
