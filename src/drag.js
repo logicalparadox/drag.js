@@ -2,12 +2,7 @@
   if ('undefined' == typeof bean) bean = require('bean');
   var b = bean.noConflict();
   var current = getComputedStyle || currentStyle;
-  var touchEvents = (function () {
-    var ret, elem = document.createElement('div');
-    ret = ('ontouchstart' in elem);
-    elem = null;
-    return ret;
-  }());
+  var is_touch_device = ('ontouchstart' in doc.documentElement) ? true : false;
   drag = function (selector) {
     return new Drag(drag.select(selector));
   };
@@ -22,8 +17,9 @@
       el.style[prop] = val;
     }
   };
+  
   drag.evs = (function () {
-    if (touchEvents) {
+    if (is_touch_device) {
       return {
         start: 'touchstart',
         move: 'touchmove',
@@ -38,6 +34,7 @@
       };
     }
   }());
+  
   Drag = function Drag(el) {
     if (!(this instanceof Drag)) return new Drag(el);
     this.el = el;
@@ -90,9 +87,16 @@
       var posX = parseFloat(self.current('left')),
           posY = parseFloat(self.current('top'));
       var moveHandler = function (e2) {
-          var offsetX = e2.clientX - e.clientX,
-              offsetY = e2.clientY - e.clientY,
-              newX, newY;
+          var offsetX, offsetY, newX, newY;
+          if (!is_touch_device) {
+            offsetX = e2.clientX - e.clientX;
+            offsetY = e2.clientY - e.clientY;
+          } else {
+            if (e.touches.length == 1) {
+              offsetX = e2.touches[0].clientX - e.touches[0].clientX;
+              offsetY = e2.touches[0].clientY - e.touches[0].clientY;
+            }
+          }
           newX = posX + offsetX;
           newY = posY + offsetY;
           if (self._container) {
@@ -124,7 +128,7 @@
           }
           e2.preventDefault();
           e2.stopPropagation();
-          };
+        };
           
       var cleanup = function () {
         b.remove(doc, drag.evs.move, moveHandler);
