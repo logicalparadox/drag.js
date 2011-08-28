@@ -2,6 +2,7 @@ require('smoosh').config({
   "JAVASCRIPT": {
     "DIST_DIR": "./",
     "drag": [
+      "./src/bean.js",
       "./src/copyright.js",
       "./src/drag.js"
     ]

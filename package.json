@@ -17,7 +17,7 @@
   "devDependencies": {
     "smoosh": "0.3.x"
   },
-  "main": "./drag.js",
+  "main": "./src/drag.js",
   "ender": "./src/ender.js",
   "scripts": {
     "builder": "node make/build.js"

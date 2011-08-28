@@ -60,6 +60,10 @@ function (context, doc) {
     this._container = drag.select(selector);
     return this;
   };
+  Drag.prototype.handle = function (selector) {
+    this._handle = drag.select(selector);
+    return this;
+  };
   Drag.prototype.start = function (fn) {
     if (fn && 'function' == typeof fn) this._start.push(fn);
     return this;
@@ -82,6 +86,7 @@ function (context, doc) {
   };
   Drag.prototype.bind = function () {
     var self = this;
+    this.unbind();
     this._eventHandler = function (e) {
       var posX = parseFloat(self.current('left')),
           posY = parseFloat(self.current('top'));
@@ -126,7 +131,7 @@ function (context, doc) {
         b.remove(doc, drag.evs.move, moveHandler);
         b.remove(doc, drag.evs.end, endHandler);
         b.remove(doc, 'selectstart', prevDef);
-        b.remove(self.el, 'dragstart', prevDef);
+        b.remove(self._handle, 'dragstart', prevDef);
       };
       
       var endHandler = function (e2) {
@@ -147,22 +152,27 @@ function (context, doc) {
       
       doc.body.focus();
       b.add(doc, 'selectstart', prevDef);
-      b.add(self.el, 'dragstart', prevDef);
+      b.add(self._handle, 'dragstart', prevDef);
       
       b.add(doc, drag.evs.move, moveHandler);
       b.add(doc, drag.evs.end, endHandler);
     };
     this.getPos();
-    b.add(this.el, drag.evs.start, this._eventHandler);
+    if (!this._handle) this._handle = this.el;
+    b.add(this._handle, drag.evs.start, this._eventHandler);
     return this;
   };
   Drag.prototype.unbind = function () {
+    if (!this._eventHandler) return this;
     b.remove(this.el, drag.evs.start, this._eventHandler);
+    if (this._handle) b.remove(this._handle, drag.evs.start, this._eventHandler);
+    return this;
   };
   var oldDrag = context.drag;
   drag.noConflict = function () {
     context.drag = oldDrag;
     return this;
-  }(typeof module !== 'undefined' && module.exports && (module.exports = drag));
+  };
+  (typeof module !== 'undefined' && module.exports && (module.exports = drag));
   context['drag'] = drag;
 }(this, document);
