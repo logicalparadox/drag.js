@@ -1,13 +1,17 @@
 !function (context, doc) {
   if ('undefined' == typeof bean) bean = require('bean');
-  var b = bean.noConflict();
+  var b = bean;
   var current = getComputedStyle || currentStyle;
   var is_touch_device = ('ontouchstart' in doc.documentElement) ? true : false;
   drag = function (selector) {
     return new Drag(drag.select(selector));
   };
   drag.select = function (selector) {
-    return document.getElementById(selector) || document.querySelectorAll(selector)[0];
+    if ('string' == typeof selector) {
+      return document.getElementById(selector) || document.querySelectorAll(selector)[0];
+    } else {
+      return selector;
+    }
   };
   drag.value = function (el, prop, val) {
     if (!val) {
