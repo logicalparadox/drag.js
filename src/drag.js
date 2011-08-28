@@ -77,10 +77,8 @@
     return this;
   };
   Drag.prototype.getPos = function (fn) {
-    this.pos = {
-      x: parseFloat(this.current('left')),
-      y: parseFloat(this.current('top'))
-    };
+    this.pos.x =this.current('left');
+    this.pos.y =this.current('top');
     if (fn && 'function' == typeof fn) fn.apply(this);
     return this;
   };
