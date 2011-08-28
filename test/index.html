@@ -43,6 +43,13 @@
         top: 40px;
         left: 40px;
       }
+      .box .handle {
+        border: 1px solid #aaa;
+        font-size: 10px;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 12px;
+      }
       .source {
         font-family: monaco, monospace;
         font-size: 12px;
@@ -175,6 +182,26 @@
               .end(function() {
                 document.getElementById('ex4title').innerHTML = 'Event Callbacks for start and... end.';
               })
+              .bind();
+          </code>
+        </pre>
+      </div>
+      <div id="example5">
+        <h3>Handle</h3>
+        <div id="container5" class="container">
+          <div id="box1" class="box"><div id="handle1" class="handle">HANDLE</div></div>
+        </div>
+        <script>
+          drag('#container5 #box1')
+            .container('#container5')
+            .handle("#container5 #box1 #handle1")
+            .bind();
+        </script>
+        <pre class="source">
+          <code>
+            drag('#container5 #box1')
+              .container('#container5')
+              .handle("#container5 #box1 #handle1")
               .bind();
           </code>
         </pre>

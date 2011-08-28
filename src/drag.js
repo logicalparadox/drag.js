@@ -165,7 +165,7 @@ function (context, doc) {
   Drag.prototype.unbind = function () {
     if (!this._eventHandler) return this;
     b.remove(this.el, drag.evs.start, this._eventHandler);
-    if (this._handle) b.remove(this._handle, drag.evs.start, this._eventHandler);
+    b.remove(this._handle, drag.evs.start, this._eventHandler);
     return this;
   };
   var oldDrag = context.drag;
