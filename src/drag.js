@@ -103,6 +103,8 @@
           }
           newX = posX + offsetX;
           newY = posY + offsetY;
+          self.pos.dX = newX - self.current('left');
+          self.pos.dY = newY - self.current('top');
           if (self._container) {
             var c = self._container;
             if (newX < 0) newX = 0;
