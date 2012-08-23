@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/logicalparadox/drag.js.png)](http://travis-ci.org/logicalparadox/drag.js)
 # drag.js
 
 Drag.js is a very small javascript utility that facilitates UI drag and drop behavior. It currently has one dependancy of [Bean](https://github.com/fat/bean).
