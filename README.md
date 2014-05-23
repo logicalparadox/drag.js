@@ -4,7 +4,7 @@ Drag.js is a very small javascript utility that facilitates UI drag and drop beh
 
 Now includes touch support. Tested on Android Honeycomb (Xoom). Looking for Apple testers! Visit [Documentation](https://logicalparadox.github.com/drag.js) on your touch device and try examples. Please leave feedback in Github Issues.
 
-## Ender Integratiion
+## Ender Integration
 
 Got [Ender](http://ender.no.de)? Well, why not?
 
